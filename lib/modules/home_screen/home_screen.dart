@@ -1,7 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:pertemuan_v/models/user.dart';
-
-import 'home_screen_widget.dart';
+import 'package:pertemuan_v/modules/home_screen/fragments/home_fragment/home_fragment.dart';
+import 'package:pertemuan_v/modules/home_screen/fragments/menu_fragment/menu_fragment.dart';
+import 'package:pertemuan_v/modules/home_screen/fragments/news_fragment/news_fragment.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({
@@ -17,90 +18,44 @@ class HomeScreen extends StatefulWidget {
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
   late Size size;
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+  final PageController _pageController = PageController();
 
   tapBottomItem(int index) {
-    setState(() {
-      _currentIndex = index;
-    });
+    if (index != 2) {
+      setState(() {
+        _currentIndex = index;
+      });
+      _pageController.animateToPage(
+        index,
+        duration: const Duration(milliseconds: 300),
+        curve: Curves.easeIn,
+      );
+    } else {
+      _scaffoldKey.currentState!.openEndDrawer();
+    }
+  }
+
+  @override
+  void initState() {
+    _pageController.addListener(() {});
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
     size = MediaQuery.of(context).size;
     return Scaffold(
-      body: Column(
+      key: _scaffoldKey,
+      endDrawer: const Drawer(),
+      body: PageView(
+        controller: _pageController,
         children: [
-          SizedBox(
-            height: MediaQuery.of(context).padding.top,
+          HomeFragment(
+            user: widget.user,
           ),
-          Padding(
-            padding: const EdgeInsets.symmetric(
-              horizontal: 16,
-            ),
-            child: HeaderWidget(
-              user: widget.user,
-            ),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          const Padding(
-            padding: EdgeInsets.symmetric(
-              horizontal: 16,
-            ),
-            child: SearchFieldWidget(),
-          ),
-          const SizedBox(
-            height: 16,
-          ),
-          Expanded(
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(
-                    horizontal: 16,
-                  ),
-                  child: SectionTitle(
-                    label: "Hotest News",
-                  ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                  ),
-                  child: HotestNewsCard(
-                    size: size,
-                    newsTitle: "Lebaran Sebentar Lagi",
-                    pictureUrl: "https://picsum.photos/1080/690",
-                  ),
-                ),
-                const SizedBox(
-                  height: 16,
-                ),
-                const Padding(
-                  padding: EdgeInsets.symmetric(horizontal: 16),
-                  child: SectionTitle(
-                    label: "Latest News",
-                  ),
-                ),
-                const SizedBox(
-                  height: 8,
-                ),
-                Padding(
-                  padding: const EdgeInsets.symmetric(
-                    horizontal: 16,
-                  ),
-                  child: LatestNewsIndexCardSection(
-                    size: size,
-                  ),
-                ),
-              ],
-            ),
-          ),
+          const NewsFragment(),
+          const MenuFragment()
         ],
       ),
       bottomNavigationBar: BottomNavigationBar(
