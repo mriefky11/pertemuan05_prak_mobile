@@ -67,7 +67,7 @@ class _HomeFragmentState extends State<HomeFragment> {
                   ),
                   child: HotestNewsCard(
                     size: size,
-                    newsTitle: "Lebaran Sebentar Lagi",
+                    newsTitle: "Tugas Ga Beres-Beres",
                     pictureUrl: "https://picsum.photos/1080/690",
                   ),
                 ),

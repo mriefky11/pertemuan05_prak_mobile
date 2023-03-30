@@ -20,7 +20,7 @@ class HeaderWidget extends StatelessWidget {
         Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text("Hi, Selamat datang"),
+            const Text("Hi, Welcome Back"),
             Text(
               user.name,
               style: const TextStyle(
@@ -209,7 +209,7 @@ class LatestNewsCard extends StatelessWidget {
                   child: Padding(
                     padding: const EdgeInsets.all(8.0),
                     child: Text(
-                      "${i + 1}. Laboris fugiat eiusmod consequat aliqua eiusmod.",
+                      "${i + 1}. judul berita.",
                     ),
                   ),
                 ),

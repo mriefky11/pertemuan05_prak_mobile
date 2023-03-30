@@ -29,12 +29,12 @@ class User {
   factory User.dummy() {
     return User(
       id: 001,
-      name: "Diar Nur Rizky",
-      username: "diarn",
-      email: "diarn@email.com",
+      name: "Mochamad Riefky Rafliana Suwandy",
+      username: "RIefky",
+      email: "20060085@itg.ac.id",
       profilePhoto:
           "https://cdn.idntimes.com/content-images/community/2020/09/104967619-2451390651819718-4934284928595035666-n-2fc82b7325949c7d003c1c58e17d48b7.jpg",
-      phoneNumber: "085123456789",
+      phoneNumber: "082125358072",
     );
   }
 }

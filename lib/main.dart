@@ -14,6 +14,7 @@ class MyApp extends StatelessWidget {
       routerDelegate: AppRoutes.goRouter.routerDelegate,
       routeInformationParser: AppRoutes.goRouter.routeInformationParser,
       routeInformationProvider: AppRoutes.goRouter.routeInformationProvider,
+      debugShowCheckedModeBanner: false,
     );
   }
 }
