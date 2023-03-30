@@ -53,7 +53,9 @@ class _NewsDetailScreenState extends State<NewsDetailScreen> {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        leading: BackButton(color: Colors.white),
+        leading: BackButton(
+          color: Colors.white,
+        ),
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {
